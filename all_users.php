@@ -21,10 +21,10 @@
 <?php
 
 $host = 'localhost';
-$port = '8889';
+$port = '8889'; // 3306 sur UWAmp et laragon
 $db = 'my_activities';
 $user = 'root';
-$pass = 'root';
+$pass = 'root'; // '' sur laragon
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;port=$port;dbname=$db;charset=$charset";
@@ -63,6 +63,7 @@ function get($name) {
 $start_letter = htmlspecialchars(get("start_letter"));
 $status_id = (int)get("status_id");
 $sql = "select users.id as user_id, username, email, s.name as status from users join status s on users.status_id = s.id where username like '$start_letter%' and status_id = $status_id order by username";
+echo $sql ;
 $stmt = $pdo->query($sql);
 ?>
 <table>
